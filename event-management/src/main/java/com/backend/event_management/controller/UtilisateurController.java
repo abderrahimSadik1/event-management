@@ -48,6 +48,15 @@ public class UtilisateurController {
         return new ResponseEntity<>(savedUtilisateur, HttpStatus.CREATED);
     }
 
+    // Get user ID
+    @GetMapping("/id")
+    public ResponseEntity<Long> getUtilisateurId(@AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername();
+        Utilisateur user = utilisateurService.getUtilisateurByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return new ResponseEntity<>(user.getId(), HttpStatus.OK);
+    }
+
     // Update user information
     @PutMapping("/{id}")
     public ResponseEntity<Utilisateur> updateUtilisateur(@PathVariable Long id,
@@ -56,6 +65,18 @@ public class UtilisateurController {
 
         if (utilisateur != null) {
             return new ResponseEntity<>(utilisateur, HttpStatus.OK); // Successfully updated
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // User not found
+        }
+    }
+
+    // Get user by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Utilisateur> getUtilisateurById(@PathVariable Long id) {
+        Optional<Utilisateur> utilisateur = utilisateurService.getUtilisateurById(id);
+
+        if (utilisateur.isPresent()) {
+            return new ResponseEntity<>(utilisateur.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); // User not found
         }

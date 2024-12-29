@@ -10,16 +10,15 @@ import { CollaborationsComponent } from './pages/collaborations/collaborations.c
 import { MoreDetailsComponent } from './pages/more-details/more-details.component';
 import { CreateEventComponent } from './pages/create-event/create-event.component';
 export const routes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: 'login', component:LoginComponent },
-    {path: 'register', component: RegisterComponent },
-    {path: 'home', component: HomeComponent },
-    {path: 'events', component: EventsComponent },
-    {path: 'collaboration', component: CollaborationsComponent },
-    {path: 'about', component: AboutComponent },
-    {path: 'learnmore', component: LearnMoreComponent },
-    {path: 'more', component: MoreDetailsComponent },
-    {path: 'createEvent', component:CreateEventComponent },
-    {path: 'profile', component: ProfileComponent }
-
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'events', component: EventsComponent },
+  { path: 'collaboration', component: CollaborationsComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'learnmore', component: LearnMoreComponent },
+  { path: 'more/:id', component: MoreDetailsComponent },
+  { path: 'createEvent', component: CreateEventComponent },
+  { path: 'profile', component: ProfileComponent },
 ];

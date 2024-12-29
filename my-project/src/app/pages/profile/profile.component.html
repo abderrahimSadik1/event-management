@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -94,22 +95,6 @@
                 placeholder="••••••••"
               />
             </div>
-
-            <!--<div>
-              <label for="account-status" class="block text-sm font-semibold"
-                >Account Status</label
-              >
-              <select
-                id="account-status"
-                name="account-status"
-                [(ngModel)]="user.accountStatus"
-                class="w-full mt-2 p-3 bg-gray-700 rounded-md text-white"
-              >
-                <option value="active" selected>Active</option>
-                <option value="suspended">Suspended</option>
-                <option value="deactivated">Deactivated</option>
-              </select>
-            </div>-->
           </div>
 
           <button
@@ -121,6 +106,25 @@
         </form>
       </div>
 
+      <!-- Events Organized by User -->
+      <div class="mt-10 bg-gray-800 p-6 rounded-xl shadow-lg">
+        <h3 class="text-xl font-semibold mb-4 text-green-500">
+          Events Organized by Me
+        </h3>
+        <ul class="space-y-4">
+          <li *ngFor="let event of organizedEvents">
+            <div class="bg-gray-700 p-4 rounded-lg">
+              <h4 class="text-lg font-semibold">{{ event.nom }}</h4>
+              <p class="text-sm text-gray-400">{{ event.description }}</p>
+              <p class="text-sm text-gray-500">
+                {{ event.date }}
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Danger Zone -->
       <div class="mt-10 bg-gray-800 p-6 rounded-xl shadow-lg">
         <h3 class="text-xl font-semibold mb-4 text-red-500">Danger Zone</h3>
         <p class="text-gray-400 text-sm">
@@ -136,4 +140,5 @@
     </div>
   </body>
 </html>
+
 <app-footer></app-footer>

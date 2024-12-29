@@ -30,4 +30,8 @@ public class CommentaireService {
     public void deleteCommentaire(Long id) {
         commentaireRepository.deleteById(id);
     }
+
+    public List<Commentaire> getCommentairesByEvenementId(Long evenementId) {
+        return commentaireRepository.findByEvenementId(evenementId);
+    }
 }

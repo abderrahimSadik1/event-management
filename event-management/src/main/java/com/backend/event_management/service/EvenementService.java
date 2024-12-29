@@ -91,6 +91,28 @@ public class EvenementService {
         return mapToDTO(evenement);
     }
 
+    // Add a participant to an event
+    public EvenementDTO addParticipant(Long evenementId, Utilisateur utilisateur) {
+        Evenement evenement = evenementRepository.findById(evenementId)
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+
+        if (!evenement.getParticipants().contains(utilisateur)) {
+            evenement.getParticipants().add(utilisateur);
+            evenement = evenementRepository.save(evenement);
+        }
+
+        return mapToDTO(evenement);
+    }
+
+    // Retrieve events by user ID
+    public List<EvenementDTO> getEvenementsByUserId(Long utilisateurId) {
+        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<Evenement> evenements = evenementRepository.findByCreateur(utilisateur);
+        return evenements.stream().map(this::mapToDTO).collect(Collectors.toList());
+    }
+
     // Delete an event by ID
     public void deleteEvenement(Long evenementId) {
         Evenement evenement = evenementRepository.findById(evenementId)

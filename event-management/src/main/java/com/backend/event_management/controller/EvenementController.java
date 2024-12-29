@@ -44,6 +44,16 @@ public class EvenementController {
         }
     }
 
+    @PostMapping("/{evenementId}/join")
+    public ResponseEntity<?> joinEvent(@PathVariable Long evenementId,
+            @AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername();
+        Utilisateur user = utilisateurService.getUtilisateurByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        evenementService.addParticipant(evenementId, user);
+        return ResponseEntity.ok("User joined the event successfully");
+    }
+
     @PostMapping
     public ResponseEntity<EvenementDTO> createEvenement(
             @RequestPart("evenement") EvenementDTO evenementDTO,
@@ -62,6 +72,15 @@ public class EvenementController {
     @GetMapping
     public ResponseEntity<List<EvenementDTO>> getAllEvenements() {
         return ResponseEntity.ok(evenementService.getAllEvenements());
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<EvenementDTO>> getEvenementsByUserId(@AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername();
+        Utilisateur user = utilisateurService.getUtilisateurByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        List<EvenementDTO> evenements = evenementService.getEvenementsByUserId(user.getId());
+        return ResponseEntity.ok(evenements);
     }
 
     @GetMapping("/{id}")
