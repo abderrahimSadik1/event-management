@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+<div class="bg-black">
+  <section
+    class="relative bg-center bg-cover h-[300px]"
+    style="
+      background-image: url('https://www.events.ma/storage/events/16-11-2024/416/nacim-rabat-web-25-1-25-1731774935-ezps.jpg');
+    "
+  >
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div
+      class="relative z-10 text-center text-white flex flex-col justify-center items-center h-full"
+    >
+      <h1 class="text-3xl font-bold">Discover Exciting Events</h1>
+      <p class="text-md mt-2">Find and join amazing experiences near you.</p>
+      <div class="mt-4 flex space-x-2">
+        <input
+          type="text"
+          placeholder="Search for events..."
+          class="px-3 py-2 rounded-md w-56 text-gray-800"
+        />
+        <button
+          class="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container mx-auto py-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div
+        *ngFor="let event of events"
+        class="bg-white shadow-sm rounded-lg overflow-hidden"
+      >
+        <!-- Display Event Image (if available) -->
+        <img
+          *ngIf="event.imageBase64"
+          [src]="'data:image/jpeg;base64,' + event.imageBase64"
+          alt="{{ event.nom }}"
+          class="w-full h-36 object-cover"
+        />
+
+        <div class="p-3">
+          <!-- Display Event Title (nom) -->
+          <h3 class="text-md font-bold">{{ event.nom }}</h3>
+
+          <!-- Display Event Date and Location -->
+          <div class="flex items-center text-sm text-gray-600 mt-1">
+            <span>{{ event.date | date : "medium" }}</span> -
+            <span class="ml-2">{{ event.lieu }}</span>
+          </div>
+
+          <!-- Display Event Description -->
+          <p class="text-gray-700 mt-2">{{ event.description }}</p>
+
+          <!-- Display Creator and Participant IDs -->
+          <p *ngIf="event.createurId">Creator ID: {{ event.createurId }}</p>
+          <p *ngIf="event.participantIds && event.participantIds.length">
+            Participant IDs: {{ event.participantIds.join(", ") }}
+          </p>
+
+          <div class="flex justify-between mt-3">
+            <button
+              [routerLink]="'/more'"
+              class="bg-blue-500 text-white text-sm px-4 py-2 rounded hover:bg-blue-600"
+            >
+              Comment
+            </button>
+            <button
+              class="bg-green-500 text-white text-sm px-4 py-2 rounded hover:bg-green-600"
+            >
+              Join
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

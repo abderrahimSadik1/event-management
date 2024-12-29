@@ -1,0 +1,30 @@
+/* Custom styling for dark mode elements */
+.bg-gray-900 {
+    background-color: #1a202c; /* Dark background */
+  }
+  
+  .bg-gray-800 {
+    background-color: #2d3748; /* Slightly lighter background */
+  }
+  
+  .text-gray-400 {
+    color: #e2e8f0; /* Lighter text color */
+  }
+  
+  .text-gray-700 {
+    color: #edf2f7; /* Lighter text color for table headers */
+  }
+  
+  .text-white {
+    color: white;
+  }
+  
+  .table-auto {
+    width: 100%;
+    table-layout: auto;
+  }
+  
+  .shadow-lg {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  

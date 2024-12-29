@@ -1,0 +1,139 @@
+<app-navbar></app-navbar>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Account Settings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .profile-img {
+        object-fit: cover;
+        border-radius: 9999px;
+      }
+      .btn-main {
+        background-color: #1e40af;
+        color: white;
+      }
+      .btn-main:hover {
+        background-color: #1e3a8a;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-white font-sans">
+    <div class="container mx-auto p-6">
+      <div class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-bold">Account Settings</h1>
+        <button
+          class="bg-blue-600 px-6 py-2 rounded-full text-white text-sm hover:bg-blue-700 transition"
+        >
+          Edit
+        </button>
+      </div>
+
+      <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+        <div class="flex items-center mb-6">
+          <div class="w-24 h-24 mr-6">
+            <img
+              [src]="
+                user.profileImage ||
+                'https://www.w3schools.com/w3images/avatar2.png'
+              "
+              alt="User Profile Image"
+              class="profile-img w-full h-full"
+            />
+          </div>
+
+          <div>
+            <h2 class="text-xl font-semibold">
+              {{ user.nom }} {{ user.prenom }}
+            </h2>
+          </div>
+        </div>
+
+        <form (submit)="saveChanges()">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="username" class="block text-sm font-semibold"
+                >Username</label
+              >
+              <input
+                type="text"
+                id="username"
+                name="username"
+                [(ngModel)]="user.username"
+                class="w-full mt-2 p-3 bg-gray-700 rounded-md text-white"
+                placeholder="hamid123"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-semibold"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="user.email"
+                class="w-full mt-2 p-3 bg-gray-700 rounded-md text-white"
+                placeholder="hamid@gmail.com"
+              />
+            </div>
+
+            <div>
+              <label for="password" class="block text-sm font-semibold"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="password"
+                name="password"
+                [(ngModel)]="user.password"
+                class="w-full mt-2 p-3 bg-gray-700 rounded-md text-white"
+                placeholder="••••••••"
+              />
+            </div>
+
+            <!--<div>
+              <label for="account-status" class="block text-sm font-semibold"
+                >Account Status</label
+              >
+              <select
+                id="account-status"
+                name="account-status"
+                [(ngModel)]="user.accountStatus"
+                class="w-full mt-2 p-3 bg-gray-700 rounded-md text-white"
+              >
+                <option value="active" selected>Active</option>
+                <option value="suspended">Suspended</option>
+                <option value="deactivated">Deactivated</option>
+              </select>
+            </div>-->
+          </div>
+
+          <button
+            type="submit"
+            class="btn-main mt-6 py-3 px-6 rounded-full text-lg"
+          >
+            Save Changes
+          </button>
+        </form>
+      </div>
+
+      <div class="mt-10 bg-gray-800 p-6 rounded-xl shadow-lg">
+        <h3 class="text-xl font-semibold mb-4 text-red-500">Danger Zone</h3>
+        <p class="text-gray-400 text-sm">
+          Once you delete your account, all data will be lost permanently.
+          Please proceed with caution.
+        </p>
+        <button
+          class="bg-red-600 hover:bg-red-700 mt-4 py-3 px-6 rounded-full text-white"
+        >
+          Delete Account
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
+<app-footer></app-footer>

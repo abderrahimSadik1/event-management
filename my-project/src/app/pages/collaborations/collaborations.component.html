@@ -1,0 +1,107 @@
+<app-navbar></app-navbar>
+
+<div class="bg-gray-900 text-white relative">
+  <!-- Hero Section -->
+  <div
+    class="relative h-screen flex flex-col items-center justify-center text-center bg-cover bg-center"
+    style="
+      background-image: url('https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F816590549%2F2253471909813%2F1%2Foriginal.png?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C940%2C470&s=4f3b39ca98c5a6afb9e02103ac904b36');
+    "
+  >
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <h1 class="text-6xl font-extrabold text-blue-400 z-10 drop-shadow-lg">
+      Create Moments That Last Forever
+    </h1>
+    <p class="text-xl text-gray-300 mt-4 max-w-xl mx-auto z-10">
+      Host extraordinary events and share unforgettable experiences with the
+      world. Take the first step today!
+    </p>
+    <a
+      [routerLink]="'/createEvent'"
+      href="#create-event"
+      class="mt-8 inline-block bg-blue-500 hover:bg-blue-600 text-white py-3 px-8 rounded-lg font-semibold z-10"
+    >
+      Start Your Event
+    </a>
+  </div>
+
+  <!-- Event Creation Form Section -->
+  <div class="py-16 px-6 bg-gray-800">
+    <h2 class="text-4xl font-bold text-center text-blue-400 mb-8">
+      Create New Event
+    </h2>
+    <form
+      (ngSubmit)="onSubmit()"
+      #eventForm="ngForm"
+      class="max-w-xl mx-auto bg-gray-700 p-8 rounded-lg"
+    >
+      <div class="mb-4">
+        <label for="eventName" class="block text-gray-300">Event Name</label>
+        <input
+          type="text"
+          id="eventName"
+          [(ngModel)]="evenement.nom"
+          name="nom"
+          required
+          class="w-full p-3 rounded-md text-black"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="eventDate" class="block text-gray-300">Event Date</label>
+        <input
+          type="date"
+          id="eventDate"
+          [(ngModel)]="evenement.date"
+          name="date"
+          required
+          class="w-full p-3 rounded-md text-black"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="eventLocation" class="block text-gray-300"
+          >Event Location</label
+        >
+        <input
+          type="text"
+          id="eventLocation"
+          [(ngModel)]="evenement.lieu"
+          name="lieu"
+          required
+          class="w-full p-3 rounded-md text-black"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="eventDescription" class="block text-gray-300"
+          >Event Description</label
+        >
+        <textarea
+          id="eventDescription"
+          [(ngModel)]="evenement.description"
+          name="description"
+          required
+          class="w-full p-3 rounded-md text-black"
+        ></textarea>
+      </div>
+      <div class="mb-4">
+        <label for="eventImage" class="block text-gray-300">Event Image</label>
+        <input
+          type="file"
+          id="eventImage"
+          (change)="onFileChange($event)"
+          name="image"
+          accept="image/*"
+          class="w-full p-3 rounded-md text-black"
+        />
+      </div>
+      <button
+        type="submit"
+        [disabled]="!eventForm.form.valid"
+        class="bg-blue-500 text-white py-3 px-8 rounded-lg hover:bg-blue-600"
+      >
+        Create Event
+      </button>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer>

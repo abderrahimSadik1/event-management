@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+<div class="flex flex-col lg:flex-row min-h-screen bg-gray-900 text-white">
+ 
+  <div class="hidden lg:block lg:w-1/2 relative">
+    <img
+      src="https://img.freepik.com/photos-gratuite/femmes-regardant-cartes-postales_23-2147771245.jpg?ga=GA1.1.596118660.1732286249&semt=ais_hybrid"
+      alt="Event"
+      class="object-cover h-full w-full"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-70"></div>
+    
+  </div>
+
+  
+  <div class="lg:w-1/2 p-8 lg:p-12 bg-gradient-to-t from-gray-800 via-gray-900 to-gray-900 flex flex-col justify-between">
+    <div class="mb-12"> <!-- Added margin bottom for space between title/description and form -->
+      <h1 class="text-4xl font-bold text-center lg:text-left text-white">
+        Create Your Event
+      </h1>
+      <h2 class="text-2xl font-semibold text-center lg:text-left text-gray-300 mt-4">
+        Create an unforgettable experience with our event planner.
+      </h2>
+    </div>
+  
+    <form [formGroup]="eventForm" (ngSubmit)="createEvent()" class="space-y-8">
+      <!-- Event Name -->
+      <div class="flex flex-col space-y-2">
+        <label for="eventName" class="text-lg font-medium">Event Name</label>
+        <input
+          type="text"
+          id="eventName"
+          formControlName="eventName"
+          class="w-full p-3 bg-gray-800 text-white placeholder-gray-400 border border-gray-700 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          placeholder="Enter event name"
+        />
+        <div *ngIf="eventForm.get('eventName')?.invalid && eventForm.get('eventName')?.touched" class="text-red-500 text-sm">
+          Event name is required and must be at least 3 characters.
+        </div>
+      </div>
+  
+      <!-- Event Image -->
+      <div class="flex flex-col space-y-2">
+        <label for="eventImage" class="text-lg font-medium">Event Image</label>
+        <input
+          type="file"
+          id="eventImage"
+          (change)="onFileChange($event)"
+          class="w-full p-3 bg-gray-800 text-white placeholder-gray-400 border border-gray-700 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+  
+      <!-- Date -->
+      <div class="flex flex-col space-y-2">
+        <label for="eventDate" class="text-lg font-medium">Date & Time</label>
+        <input
+          type="datetime-local"
+          id="eventDate"
+          formControlName="eventDate"
+          class="w-full p-3 bg-gray-800 text-white placeholder-gray-400 border border-gray-700 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+        <div *ngIf="eventForm.get('eventDate')?.invalid && eventForm.get('eventDate')?.touched" class="text-red-500 text-sm">
+          Date & Time are required.
+        </div>
+      </div>
+  
+      <!-- Location -->
+      <div class="flex flex-col space-y-2">
+        <label for="eventLocation" class="text-lg font-medium">Location</label>
+        <input
+          type="text"
+          id="eventLocation"
+          formControlName="eventLocation"
+          class="w-full p-3 bg-gray-800 text-white placeholder-gray-400 border border-gray-700 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          placeholder="Enter event location"
+        />
+        <div *ngIf="eventForm.get('eventLocation')?.invalid && eventForm.get('eventLocation')?.touched" class="text-red-500 text-sm">
+          Location is required and must be at least 5 characters.
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="flex justify-center lg:justify-end">
+        <button
+          type="submit"
+          [disabled]="eventForm.invalid"
+          class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-lg shadow-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Create Event
+        </button>
+      </div>
+    </form>
+  
+    <!-- Motivational Quote -->
+    <div class="mt-12 text-center lg:text-right text-white">
+      <p class="text-lg font-bold tracking-wide italic text-xl">
+        "Your event, your vision. <br /> Let's bring it to life."
+      </p>
+    </div>
+  </div>
+  
+</div>
+<app-footer></app-footer>
