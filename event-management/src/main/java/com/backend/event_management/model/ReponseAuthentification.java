@@ -1,20 +1,18 @@
 package com.backend.event_management.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReponseAuthentification {
     private String token;
     private String message;
     private Role role;
-
-    public ReponseAuthentification(String token, String message, Role role) {
-        this.token = token;
-        this.message = message;
-        this.role = role;
-    }
 
     public String getToken() {
         return token;
